@@ -8,30 +8,29 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Base64;
 
 public class Test {
-    public static void main(String[] args) {
-        // ユーザーのローカルアプリケーションデータディレクトリを取得
+    private static Statement stmt = null;
+    public static void main(String[] ars){
+        loadDB();
+    }
+
+    public static void loadDB(){
+
         String userHome = System.getProperty("user.home");
         Path localAppDataPath = Paths.get(userHome, "AppData", "Local", "PasswordManager");
 
+        System.out.println(localAppDataPath +"\\pw.db");
         try {
-            // ディレクトリが存在しない場合は作成
-            if (!Files.exists(localAppDataPath)) {
-                Files.createDirectories(localAppDataPath);
-            }
-
-            Path filePath = localAppDataPath.resolve("pw.db");
-            if(!Files.exists(filePath)){
-                Files.createFile(filePath);
-            }
-            filePath = localAppDataPath.resolve("key.json");
-            if(!Files.exists(filePath)){
-                Files.createFile(filePath);
-            }
-
-        } catch (IOException e) {
+            Class.forName("org.sqlite.JDBC");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:" + localAppDataPath + "\\pw.db");
+            stmt = conn.createStatement();
+        }catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
