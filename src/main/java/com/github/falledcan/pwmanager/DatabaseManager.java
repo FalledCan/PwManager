@@ -25,7 +25,6 @@ public class DatabaseManager {
 
     //テーブル作成
     public void createTable() throws SQLException {
-
         String sql = "create table if not exists list(id integer primary key,name not NULL,url text,password text not NULL,memo text);";
         Statement stmt = conn.createStatement();
 
@@ -47,8 +46,29 @@ public class DatabaseManager {
     }
 
     //データの更新
-    public void updataData(){
+    public void updataData(int id, String nName, String nUrl, String nPassword, String nMemo) throws SQLException {
 
+        String sql = "update list set name = ?, url = ?, password = ?, memo = ? WHERE id = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+
+        pstmt.setString(1,nName);
+        pstmt.setString(2,nUrl);
+        pstmt.setString(3,nPassword);
+        pstmt.setString(4,nMemo);
+        pstmt.setInt(5,id);
+
+        pstmt.executeUpdate();
+
+    }
+
+    //データの削除
+    public void deleteDAte(int id) throws SQLException {
+        String sql = "delete from list where id = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+
+        pstmt.setInt(1,id);
+
+        pstmt.executeUpdate();
     }
 
     //データベースを閉じる
