@@ -23,4 +23,11 @@ public class DatabaseManager {
             e.printStackTrace();
         }
     }
+
+
+    public void close() throws SQLException {
+        if(conn != null){
+            conn.close();
+        }
+    }
 }
