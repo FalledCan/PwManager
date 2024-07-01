@@ -4,6 +4,7 @@ import javax.swing.plaf.nimbus.State;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DatabaseManager {
 
@@ -45,6 +46,7 @@ public class DatabaseManager {
         pstmt.setString(5,memo);
 
         pstmt.executeUpdate();
+        pstmt.close();
     }
 
     //データの更新
@@ -61,7 +63,7 @@ public class DatabaseManager {
         pstmt.setInt(6,id);
 
         pstmt.executeUpdate();
-
+        pstmt.close();
     }
 
     //データの削除
@@ -72,18 +74,51 @@ public class DatabaseManager {
         pstmt.setInt(1,id);
 
         pstmt.executeUpdate();
+        pstmt.close();
     }
 
     //データの取得
-    public void getData(int id){
+    public String[] getData(int id) throws SQLException {
+        String sql = "SELECT name, url, username, password, memo FROM list WHERE id = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setInt(1,id);
+        ResultSet rs = pstmt.executeQuery();
 
+        String[] DataList = new String[5];
+        if(rs.next()){
+            DataList[0] = rs.getString("name");
+            DataList[1] = rs.getString("url");
+            DataList[2] = rs.getString("username");
+            DataList[3] = rs.getString("password");
+            DataList[4] = rs.getString("memo");
+        }
+
+        rs.close();
+        pstmt.close();
+
+        return DataList;
     }
 
     //データサーチ
-    public void searchData(String name){
+    public ArrayList searchData(String name) throws SQLException {
+        String sql = "SELECT id, name, url, password, memo FROM your_table_name WHERE name = ? ORDER BY id";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, name);
+        ResultSet rs = pstmt.executeQuery();
 
+        ArrayList<String[]> list = new ArrayList<>();
+        while (rs.next()) {
+            String[] DataList = new String[6];
+            DataList[0] = String.valueOf(rs.getInt("id"));
+            DataList[1] = rs.getString("name");
+            DataList[2] = rs.getString("url");
+            DataList[3] = rs.getString("username");
+            DataList[4] = rs.getString("password");
+            DataList[5] = rs.getString("memo");
+            list.add(DataList);
+        }
+        return list;
     }
-
     //データベースを閉じる
     public void close() throws SQLException {
 
