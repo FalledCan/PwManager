@@ -1,6 +1,5 @@
 package com.github.falledcan.pwmanager;
 
-import javax.swing.plaf.nimbus.State;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
@@ -8,10 +7,10 @@ import java.util.ArrayList;
 
 public class DatabaseManager {
 
-    private  Connection conn = null;
+    private static Connection conn = null;
 
     //データベースロード
-    public void loadDB(){
+    public static void loadDB(){
 
         String userHome = System.getProperty("user.home");
         Path localAppDataPath = Paths.get(userHome, "AppData", "Local", "PasswordManager");
@@ -25,16 +24,34 @@ public class DatabaseManager {
     }
 
     //テーブル作成
-    public void createTable() throws SQLException {
-        String sql = "create table if not exists list(id integer primary key,name not NULL,"
+    public static void createTable() throws SQLException {
+        String sql_1 = "create table if not exists list(id integer primary key,name not NULL,"
                 + "url text,username text not NULL,password text not NULL,memo text);";
+        String sql_2 = "create table if not exists key(check_key texy not NULL);";
         Statement stmt = conn.createStatement();
 
-        stmt.execute(sql);
+        stmt.execute(sql_1);
+        stmt.execute(sql_2);
+        stmt.close();
+    }
+
+    //行数取得
+    public static int getRowCount() throws SQLException {
+        String sql = "select count(*) as count from list";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        int count = 0;
+        if(rs.next()){
+            count = rs.getInt("count");
+        }
+        rs.close();
+        stmt.close();
+        return count;
     }
 
     //データの挿入
-    public void insertData(String name, String url,String userName, String password, String memo) throws SQLException {
+    public static void insertData(String name, String url,String userName, String password, String memo) throws SQLException {
 
         String sql = "insert into list(name, url, username, password, memo) values(?,?,?,?,?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -50,7 +67,7 @@ public class DatabaseManager {
     }
 
     //データの更新
-    public void updataData(int id, String nName, String nUrl,String nUserName, String nPassword, String nMemo) throws SQLException {
+    public static void updataData(int id, String nName, String nUrl,String nUserName, String nPassword, String nMemo) throws SQLException {
 
         String sql = "update list set name = ?, url = ?, username = ?, password = ?, memo = ? WHERE id = ?";
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -67,7 +84,7 @@ public class DatabaseManager {
     }
 
     //データの削除
-    public void deleteDate(int id) throws SQLException {
+    public static void deleteDate(int id) throws SQLException {
         String sql = "delete from list where id = ?";
         PreparedStatement pstmt = conn.prepareStatement(sql);
 
@@ -77,9 +94,9 @@ public class DatabaseManager {
         pstmt.close();
     }
 
-    //データの取得
-    public String[] getData(int id) throws SQLException {
-        String sql = "SELECT name, url, username, password, memo FROM list WHERE id = ?";
+    //id指定データの取得
+    public static String[] getData(int id) throws SQLException {
+        String sql = "select name, url, username, password, memo from list where id = ?";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setInt(1,id);
         ResultSet rs = pstmt.executeQuery();
@@ -99,8 +116,30 @@ public class DatabaseManager {
         return DataList;
     }
 
+    //全てのデータ取得
+    public static ArrayList<String[]> getAllData() throws SQLException {
+        String sql = "select id, name, url, username, password, memo from list";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        ArrayList<String[]> list = new ArrayList<>();
+        while (rs.next()) {
+            String[] DataList = new String[6];
+            DataList[0] = String.valueOf(rs.getInt("id"));
+            DataList[1] = rs.getString("name");
+            DataList[2] = rs.getString("url");
+            DataList[3] = rs.getString("username");
+            DataList[4] = rs.getString("password");
+            DataList[5] = rs.getString("memo");
+            list.add(DataList);
+        }
+        rs.close();
+        stmt.close();
+        return list;
+    }
+
     //データサーチ
-    public ArrayList searchData(String name) throws SQLException {
+    public static ArrayList<String[]> searchData(String name) throws SQLException {
         String sql = "SELECT id, name, url, password, memo FROM your_table_name WHERE name = ? ORDER BY id";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, name);
@@ -117,10 +156,12 @@ public class DatabaseManager {
             DataList[5] = rs.getString("memo");
             list.add(DataList);
         }
+        rs.close();
+        pstmt.close();
         return list;
     }
     //データベースを閉じる
-    public void close() throws SQLException {
+    public static void close() throws SQLException {
 
         if(conn != null){
             conn.close();
