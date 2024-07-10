@@ -31,4 +31,10 @@ public class FileManager {
             e.printStackTrace();
         }
     }
+
+    public static void json(){
+        String userHome = System.getProperty("user.home");
+        Path localAppDataPath = Paths.get(userHome, "AppData", "Local", "PasswordManager");
+        Path filePath = localAppDataPath.resolve("key.json");
+    }
 }

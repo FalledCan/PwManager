@@ -21,16 +21,20 @@ public class Encryption {
         System.out.println("Original String: " + originalString);
 
         // 暗号化
-        String encryptedString = encrypt(originalString, aesKey);
+        String encryptedString = encrypt(originalString);
         System.out.println("Encrypted String: " + encryptedString);
 
         // 復号化
-        String decryptedString = decrypt(encryptedString, aesKey);
+        String decryptedString = decrypt(encryptedString);
         System.out.println("Decrypted String: " + decryptedString);
     }
 
+    public static void readKey(){
+        key = "";
+    }
+
     //指定されたデータをAESで暗号化
-    public static String encrypt(String data, String key) throws Exception {
+    public static String encrypt(String data) throws Exception {
         byte[] decodedKey = Base64.getDecoder().decode(key);
         SecretKeySpec secretKey = new SecretKeySpec(decodedKey, ALGORITHM);
         Cipher cipher = Cipher.getInstance(ALGORITHM);
@@ -40,7 +44,7 @@ public class Encryption {
     }
 
     // 指定された暗号化データをAESで復号化
-    public static String decrypt(String encryptedData, String key) throws Exception {
+    public static String decrypt(String encryptedData) throws Exception {
         byte[] decodedKey = Base64.getDecoder().decode(key);
         SecretKeySpec secretKey = new SecretKeySpec(decodedKey, ALGORITHM);
         Cipher cipher = Cipher.getInstance(ALGORITHM);
