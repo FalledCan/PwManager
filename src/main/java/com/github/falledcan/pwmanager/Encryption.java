@@ -29,6 +29,10 @@ public class Encryption {
         System.out.println("Decrypted String: " + decryptedString);
     }
 
+    public static void loadKey(){
+
+    }
+
     //指定されたデータをAESで暗号化
     public static String encrypt(String data, String key) throws Exception {
         byte[] decodedKey = Base64.getDecoder().decode(key);

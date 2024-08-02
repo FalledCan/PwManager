@@ -17,7 +17,7 @@ import java.util.Base64;
 public class Test {
     private static Statement stmt = null;
     public static void main(String[] ars){
-        loadDB();
+        FileManager.jsonData_key();
     }
 
     public static void loadDB(){
