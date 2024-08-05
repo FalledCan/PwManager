@@ -9,32 +9,14 @@ import java.util.Base64;
 public class Encryption {
     private static final String ALGORITHM = "AES";
     private static final int KEY_SIZE = 256; // AES-256
-    private static String key;
+    public static String key;
 
-    public static void main(String[] args) throws Exception {
-        // ランダムなAES鍵を生成
-        String aesKey = generateRandomAESKey();
-        System.out.println("Generated AES Key: " + aesKey);
-
-        // 暗号化する文字列
-        String originalString = "たしかにそうかも知れないですね";
-        System.out.println("Original String: " + originalString);
-
-        // 暗号化
-        String encryptedString = encrypt(originalString, aesKey);
-        System.out.println("Encrypted String: " + encryptedString);
-
-        // 復号化
-        String decryptedString = decrypt(encryptedString, aesKey);
-        System.out.println("Decrypted String: " + decryptedString);
-    }
-
-    public static void loadKey(){
-
+    public static void loadKey() throws Exception {
+        key = FileManager.jsonData_key();
     }
 
     //指定されたデータをAESで暗号化
-    public static String encrypt(String data, String key) throws Exception {
+    public static String encrypt(String data) throws Exception {
         byte[] decodedKey = Base64.getDecoder().decode(key);
         SecretKeySpec secretKey = new SecretKeySpec(decodedKey, ALGORITHM);
         Cipher cipher = Cipher.getInstance(ALGORITHM);
@@ -44,7 +26,7 @@ public class Encryption {
     }
 
     // 指定された暗号化データをAESで復号化
-    public static String decrypt(String encryptedData, String key) throws Exception {
+    public static String decrypt(String encryptedData) throws Exception {
         byte[] decodedKey = Base64.getDecoder().decode(key);
         SecretKeySpec secretKey = new SecretKeySpec(decodedKey, ALGORITHM);
         Cipher cipher = Cipher.getInstance(ALGORITHM);
@@ -61,6 +43,13 @@ public class Encryption {
             SecretKey secretKey = keyGen.generateKey();
             return key = Base64.getEncoder().encodeToString(secretKey.getEncoded());
 
+    }
+
+    //データベースチェック
+    public  static boolean isCheckDataBase() throws Exception {
+        String checkKey = "ajS932FdkmL49De5vkG";
+        String key = DatabaseManager.dataKey();
+        return decrypt(key).equals(checkKey);
     }
 
 }

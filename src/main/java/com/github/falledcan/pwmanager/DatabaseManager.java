@@ -27,12 +27,34 @@ public class DatabaseManager {
     public static void createTable() throws SQLException {
         String sql_1 = "create table if not exists list(id integer primary key,name not NULL,"
                 + "url text,username text not NULL,password text not NULL,memo text);";
-        String sql_2 = "create table if not exists key(check_key texy not NULL);";
+        String sql_2 = "create table if not exists key(num integer,check_key text not NULL);";
         Statement stmt = conn.createStatement();
 
         stmt.execute(sql_1);
         stmt.execute(sql_2);
         stmt.close();
+    }
+
+    //key
+    public static String dataKey() throws Exception {
+        String sql = "select check_key from key where num = 1";
+
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        String getKey;
+        if(rs.next()){
+            getKey = rs.getString("check_key");
+        }else {
+            String checkKey = "ajS932FdkmL49De5vkG";
+            sql = "insert into key(num, check_key) values(?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,1);
+            getKey = Encryption.encrypt(checkKey);
+            pstmt.setString(2,getKey);
+            pstmt.executeUpdate();
+            pstmt.close();
+        }
+        return getKey;
     }
 
     //行数取得

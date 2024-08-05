@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Main extends Application {
@@ -23,19 +22,23 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws Exception {
         fast_load();
         launch();
     }
 
     //初期データロード
-    private static void fast_load() throws SQLException {
+    private static void fast_load() throws Exception {
+        //各ファイルの生成
         FileManager.createFiles();
+        //データベースロード
         DatabaseManager.loadDB();
         DatabaseManager.createTable();
         Row_count = DatabaseManager.getRowCount();
         if(Row_count != 0){
             DataList = DatabaseManager.getAllData();
         }
+        //暗号化キーロード
+        Encryption.loadKey();
     }
 }
