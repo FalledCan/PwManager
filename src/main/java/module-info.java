@@ -6,7 +6,8 @@ module com.github.falledcan.pwmanager {
     requires org.kordamp.bootstrapfx.core;
     requires java.desktop;
     requires java.sql;
-    requires com.google.gson;
+
+    requires com.fasterxml.jackson.databind;
 
     opens com.github.falledcan.pwmanager to javafx.fxml;
     exports com.github.falledcan.pwmanager;

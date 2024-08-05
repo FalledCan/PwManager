@@ -17,7 +17,12 @@ import java.util.Base64;
 public class Test {
     private static Statement stmt = null;
     public static void main(String[] ars){
-        FileManager.jsonData_key();
+        try {
+            System.out.println(FileManager.jsonData_key());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public static void loadDB(){
