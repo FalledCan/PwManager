@@ -34,11 +34,16 @@ public class Main extends Application {
         //データベースロード
         DatabaseManager.loadDB();
         DatabaseManager.createTable();
+        //暗号化キーロード
+        Encryption.loadKey();
+
+        if(!Encryption.isCheckDataBase()){
+            System.exit(0);
+        }
+
         Row_count = DatabaseManager.getRowCount();
         if(Row_count != 0){
             DataList = DatabaseManager.getAllData();
         }
-        //暗号化キーロード
-        Encryption.loadKey();
     }
 }

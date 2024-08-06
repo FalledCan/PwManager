@@ -73,8 +73,10 @@ public class DatabaseManager {
     }
 
     //データの挿入
-    public static void insertData(String name, String url,String userName, String password, String memo) throws SQLException {
-
+    public static boolean insertData(String name, String url,String userName, String password, String memo) throws SQLException {
+        if(name == null||userName == null||password == null){
+            return false;
+        }
         String sql = "insert into list(name, url, username, password, memo) values(?,?,?,?,?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
 
@@ -86,6 +88,7 @@ public class DatabaseManager {
 
         pstmt.executeUpdate();
         pstmt.close();
+        return true;
     }
 
     //データの更新
@@ -106,7 +109,9 @@ public class DatabaseManager {
     }
 
     //データの削除
-    public static void deleteDate(int id) throws SQLException {
+    public static boolean deleteDate(Integer id) throws SQLException {
+        if(id == null)
+            return false;
         String sql = "delete from list where id = ?";
         PreparedStatement pstmt = conn.prepareStatement(sql);
 
@@ -114,6 +119,7 @@ public class DatabaseManager {
 
         pstmt.executeUpdate();
         pstmt.close();
+        return true;
     }
 
     //id指定データの取得
