@@ -15,7 +15,7 @@
    <children>
       <Pane layoutY="25.0" prefHeight="551.0" prefWidth="62.0" style="-fx-background-color: #353446;">
          <children>
-            <Button fx:id="addPw" layoutX="5.0" layoutY="486.0" mnemonicParsing="false" onAction="#testB" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #353446;">
+            <Button id="addpw" fx:id="addPw" layoutX="5.0" layoutY="486.0" mnemonicParsing="false" onAction="#testB" prefHeight="50.0" prefWidth="50.0" stylesheets="@style.css">
                <graphic>
                   <ImageView fitHeight="42.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -30,7 +30,7 @@
                <children>
                   <HBox prefHeight="30.0" prefWidth="720.0" style="-fx-background-color: #353446;">
                      <children>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="190.0" text="service" textFill="WHITE">
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="277.0" text="service" textFill="WHITE">
                            <font>
                               <Font name="Corbel Bold" size="15.0" />
                            </font>
@@ -45,16 +45,52 @@
                               <Font name="Corbel Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="150.0" text="action" textFill="WHITE">
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="124.0" text="action" textFill="WHITE">
                            <font>
                               <Font name="Corbel Bold" size="15.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <ScrollPane prefHeight="476.0" prefWidth="720.0">
+                  <ScrollPane id="viewlist" prefHeight="488.0" prefWidth="727.0" stylesheets="@style.css">
                      <content>
-                        <VBox prefHeight="473.0" prefWidth="718.0" />
+                        <VBox id="viewlist" prefHeight="488.0" prefWidth="720.0" stylesheets="@style.css">
+                           <children>
+                              <HBox id="listcontents" prefHeight="37.0" prefWidth="720.0" style="-fx-background-color: #DEDEDE;" stylesheets="@style.css">
+                                 <children>
+                                    <Label id="pwlist" alignment="CENTER" prefHeight="37.0" prefWidth="277.0" stylesheets="@style.css" text="Google" />
+                                    <Label id="pwlist" alignment="CENTER" prefHeight="37.0" prefWidth="190.0" stylesheets="@style.css" text="Beerchan" />
+                                    <Label id="pwlist" alignment="CENTER" prefHeight="37.0" prefWidth="190.0" stylesheets="@style.css" text="********" />
+                                    <Pane prefHeight="37.0" prefWidth="124.0">
+                                       <children>
+                                          <Button id="memo" contentDisplay="RIGHT" layoutX="14.0" layoutY="4.0" mnemonicParsing="false" stylesheets="@style.css">
+                                             <font>
+                                                <Font size="6.0" />
+                                             </font>
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@memo.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button id="edit" layoutX="65.0" layoutY="4.0" mnemonicParsing="false" stylesheets="@style.css">
+                                             <font>
+                                                <Font size="6.0" />
+                                             </font>
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@edit.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </HBox>
+                           </children></VBox>
                      </content>
                   </ScrollPane>
                </children>
@@ -63,7 +99,10 @@
       </HBox>
       <HBox fx:id="titleBar" layoutY="-1.0" prefHeight="30.0" prefWidth="811.0" style="-fx-background-color: #353446;">
          <children>
-            <Label prefHeight="30.0" prefWidth="775.0" text="Label" />
+            <Label prefHeight="30.0" prefWidth="775.0" text="   PasswordManager" textFill="WHITE">
+               <font>
+                  <Font name="Corbel Bold" size="15.0" />
+               </font></Label>
             <Button id="close-button" mnemonicParsing="false" onAction="#handleClose" prefHeight="29.0" prefWidth="37.0" stylesheets="@style.css" text="✕" textFill="WHITE">
                <font>
                   <Font size="13.0" />

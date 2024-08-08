@@ -1,0 +1,83 @@
+#close-button {
+    -fx-background-color: #353446; /* 通常の背景色 */
+    -fx-text-fill: #ffffff; /* 通常の文字色 */
+    -fx-background-radius: 0; /* ボタンの角をフラットに */
+    -fx-border-radius: 0;
+    -fx-border-color: transparent; /* ボーダーを透明に */
+    -fx-border-width: 0;
+}
+
+#close-button:hover {
+    -fx-background-color: #ff6347; /* ホバー時の背景色 */
+}
+
+#memo {
+    -fx-background-color: #9edd87;
+    -fx-text-fill: white;
+    -fx-background-radius: 30px;
+    -fx-padding: 4px 4px;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-effect: null;
+}
+
+#memo:hover {
+    -fx-background-color: #66c943;
+}
+
+#edit {
+    -fx-background-color: #37a9ff;
+    -fx-text-fill: white;
+    -fx-background-radius: 30px;
+    -fx-padding: 4px 4px;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-effect: null;
+}
+
+#edit:hover {
+    -fx-background-color: #008af2;
+
+}
+
+#addpw {
+    -fx-background-color: #353446
+}
+
+#addpw:hover {
+    -fx-background-color: #21202C
+}
+
+#pwlist:hover {
+    -fx-background-color: #ABABAB
+}
+
+#viewlist {
+   -fx-background-insets: 0;
+    -fx-effect: null;
+    }
+
+.scroll-pane .scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+}
+
+.scroll-pane .scroll-bar:vertical {
+    -fx-opacity: 0;
+    -fx-padding: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+}
+.scroll-pane {
+    -fx-padding: 0; /* パディングを0に設定 */
+}
+
+.scroll-pane .viewport {
+    -fx-padding: 0; /* ビューポートのパディングも0に設定 */
+}
+
+#listcontents {
+    -fx-min-height: 37px;
+}
