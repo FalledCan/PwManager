@@ -1,6 +1,5 @@
 package com.github.falledcan.pwmanager;
 
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Test {
@@ -23,25 +22,27 @@ public class Test {
         //暗号化キーロード
         Encryption.loadKey();
 
-        if(!Encryption.isCheckDataBase()){
-            System.exit(0);
-        }
-
-        int Row_count = DatabaseManager.getRowCount();
-        if(Row_count != 0){
-
-            ArrayList<String[]> list = DatabaseManager.getAllData();
-            for(String[] datas: list){
-                System.out.println(datas[0]);
-                System.out.println(datas[1]);
-                System.out.println(datas[2]);
-                System.out.println(datas[3]);
-                System.out.println(datas[4]);
-
+        if(false) {
+            if (!Encryption.isCheckDataBase()) {
+                System.exit(0);
             }
 
+            int Row_count = DatabaseManager.getRowCount();
+            if (Row_count != 0) {
+
+                ArrayList<String[]> list = DatabaseManager.getAllData();
+                for (String[] datas : list) {
+                    System.out.println(datas[0]);
+                    System.out.println(datas[1]);
+                    System.out.println(datas[2]);
+                    System.out.println(datas[3]);
+                    System.out.println(datas[4]);
+
+                }
+
+            }
+            System.out.println(Row_count);
         }
-        System.out.println(Row_count);
     }
 
 }
