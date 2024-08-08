@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="572.0" prefWidth="811.0" style="-fx-background-color: #F5F1EB;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.falledcan.pwmanager.Controller">
+<AnchorPane prefHeight="572.0" prefWidth="811.0" style="-fx-background-color: #F5F1EB;" stylesheets="@tooltip-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.falledcan.pwmanager.Controller">
    <children>
-      <Pane layoutY="25.0" prefHeight="551.0" prefWidth="62.0" style="-fx-background-color: #353446;" />
+      <Pane layoutY="25.0" prefHeight="551.0" prefWidth="62.0" style="-fx-background-color: #353446;">
+         <children>
+            <Button fx:id="addPw" layoutX="5.0" layoutY="486.0" mnemonicParsing="false" onAction="#testB" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #353446;">
+               <graphic>
+                  <ImageView fitHeight="42.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@plus.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+         </children></Pane>
       <HBox layoutX="100.0" layoutY="14.0" prefHeight="523.0" prefWidth="720.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="14.0">
          <children>
             <VBox prefHeight="200.0" prefWidth="720.0">
@@ -48,6 +61,14 @@
             </VBox>
          </children>
       </HBox>
-      <HBox fx:id="titleBar" layoutY="-1.0" prefHeight="30.0" prefWidth="811.0" style="-fx-background-color: #353446;" />
+      <HBox fx:id="titleBar" layoutY="-1.0" prefHeight="30.0" prefWidth="811.0" style="-fx-background-color: #353446;">
+         <children>
+            <Label prefHeight="30.0" prefWidth="775.0" text="Label" />
+            <Button id="close-button" mnemonicParsing="false" onAction="#handleClose" prefHeight="29.0" prefWidth="37.0" stylesheets="@style.css" text="✕" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+         </children></HBox>
    </children>
 </AnchorPane>

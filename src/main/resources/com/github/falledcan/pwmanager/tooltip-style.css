@@ -1,0 +1,6 @@
+.tooltip {
+    -fx-background-color: rgba(0, 0, 0, 0.8); /* 背景色 */
+    -fx-text-fill: white; /* テキスト色 */
+    -fx-padding: 10; /* 内部余白 */
+    -fx-font-size: 14px; /* フォントサイズ */
+}

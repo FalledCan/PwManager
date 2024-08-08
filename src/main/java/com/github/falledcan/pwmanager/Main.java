@@ -19,9 +19,11 @@ public class Main extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-screen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
+        stage.setTitle("PasswordManager");
+        Controller controller = new Controller();
         stage.setScene(scene);
         stage.show();
+        controller.setStage(stage);
     }
 
     public static void main(String[] args) throws Exception {
