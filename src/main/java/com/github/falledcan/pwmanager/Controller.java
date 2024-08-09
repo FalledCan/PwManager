@@ -1,11 +1,13 @@
 package com.github.falledcan.pwmanager;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Controller {
@@ -23,11 +25,28 @@ public class Controller {
         private HBox titleBar;
 
         @FXML
+        private VBox listBox;
+
+        @FXML
         private Button addPw;
 
 
         @FXML
         public void initialize() {
+
+
+
+                try {
+                        for(int i = 0; i< 3; i++) {
+                                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("lists.fxml"));
+                                System.out.println("a");
+                                HBox hBox = fxmlLoader.load();
+                                listBox.getChildren().add(hBox);
+                        }
+                }catch (Exception e){
+                        e.printStackTrace();
+                }
+
                 makeStageDraggable();
                 Tooltip tooltip = new Tooltip("add Password");
                 Tooltip.install(addPw, tooltip);

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="572.0" prefWidth="811.0" style="-fx-background-color: #F5F1EB;" stylesheets="@tooltip-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.falledcan.pwmanager.Controller">
+<AnchorPane prefHeight="576.0" prefWidth="829.0" style="-fx-background-color: #F5F1EB;" stylesheets="@tooltip-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.falledcan.pwmanager.Controller">
    <children>
       <Pane layoutY="25.0" prefHeight="551.0" prefWidth="62.0" style="-fx-background-color: #353446;">
          <children>
@@ -24,13 +24,13 @@
                   </ImageView>
                </graphic></Button>
          </children></Pane>
-      <HBox layoutX="100.0" layoutY="14.0" prefHeight="523.0" prefWidth="720.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="14.0">
+      <HBox layoutX="100.0" layoutY="14.0" prefHeight="523.0" prefWidth="738.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="45.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="720.0">
+            <VBox prefHeight="523.0" prefWidth="739.0">
                <children>
                   <HBox prefHeight="30.0" prefWidth="720.0" style="-fx-background-color: #353446;">
                      <children>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="277.0" text="service" textFill="WHITE">
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="265.0" text="service" textFill="WHITE">
                            <font>
                               <Font name="Corbel Bold" size="15.0" />
                            </font>
@@ -52,13 +52,13 @@
                         </Label>
                      </children>
                   </HBox>
-                  <ScrollPane id="viewlist" prefHeight="488.0" prefWidth="727.0" stylesheets="@style.css">
+                  <ScrollPane id="viewlist" prefHeight="488.0" prefWidth="720.0" stylesheets="@style.css">
                      <content>
-                        <VBox id="viewlist" prefHeight="488.0" prefWidth="720.0" stylesheets="@style.css">
+                        <VBox id="viewlist" fx:id="listBox" prefHeight="488.0" prefWidth="719.0" stylesheets="@style.css">
                            <children>
-                              <HBox id="listcontents" prefHeight="37.0" prefWidth="720.0" style="-fx-background-color: #DEDEDE;" stylesheets="@style.css">
+                              <HBox id="listcontents" prefHeight="37.0" prefWidth="710.0" style="-fx-background-color: #DEDEDE;" stylesheets="@style.css">
                                  <children>
-                                    <Label id="pwlist" alignment="CENTER" prefHeight="37.0" prefWidth="277.0" stylesheets="@style.css" text="Google" />
+                                    <Label id="pwlist" alignment="CENTER" prefHeight="37.0" prefWidth="265.0" stylesheets="@style.css" text="Google" />
                                     <Label id="pwlist" alignment="CENTER" prefHeight="37.0" prefWidth="190.0" stylesheets="@style.css" text="Beerchan" />
                                     <Label id="pwlist" alignment="CENTER" prefHeight="37.0" prefWidth="190.0" stylesheets="@style.css" text="********" />
                                     <Pane prefHeight="37.0" prefWidth="124.0">
@@ -85,7 +85,8 @@
                                                       <Image url="@edit.png" />
                                                    </image>
                                                 </ImageView>
-                                             </graphic></Button>
+                                             </graphic>
+                                          </Button>
                                        </children>
                                     </Pane>
                                  </children>
@@ -97,13 +98,13 @@
             </VBox>
          </children>
       </HBox>
-      <HBox fx:id="titleBar" layoutY="-1.0" prefHeight="30.0" prefWidth="811.0" style="-fx-background-color: #353446;">
+      <HBox fx:id="titleBar" layoutY="-1.0" prefHeight="30.0" prefWidth="829.0" style="-fx-background-color: #353446;">
          <children>
-            <Label prefHeight="30.0" prefWidth="775.0" text="   PasswordManager" textFill="WHITE">
+            <Label prefHeight="30.0" prefWidth="798.0" text="   PasswordManager" textFill="WHITE">
                <font>
                   <Font name="Corbel Bold" size="15.0" />
                </font></Label>
-            <Button id="close-button" mnemonicParsing="false" onAction="#handleClose" prefHeight="29.0" prefWidth="37.0" stylesheets="@style.css" text="✕" textFill="WHITE">
+            <Button id="close-button" mnemonicParsing="false" onAction="#handleClose" prefHeight="29.0" prefWidth="59.0" stylesheets="@style.css" text="✕" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
