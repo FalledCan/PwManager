@@ -3,11 +3,16 @@ package com.github.falledcan.pwmanager.controllers;
 import com.github.falledcan.pwmanager.DatabaseManager;
 import com.github.falledcan.pwmanager.Encryption;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class PasswordController {
@@ -101,6 +106,14 @@ public class PasswordController {
 
         if(count == 0){
             try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/github/falledcan/pwmanager/popup.fxml"));
+                Parent root = fxmlLoader.load();
+                Stage addStage = new Stage();
+                addStage.initStyle(StageStyle.UNDECORATED);
+                addStage.setTitle("PoP");
+                addStage.initModality(Modality.APPLICATION_MODAL);
+                addStage.setScene(new Scene(root));
+
                 //true:編集false:追加
                 if(edit){
 
@@ -111,6 +124,7 @@ public class PasswordController {
                     DatabaseManager.insertData(service.getText(),url.getText(),username_,email_,password_,null);
                 }
                 edit = false;
+                addStage.showAndWait();
                 Stage stage = (Stage) cancelButton.getScene().getWindow();
                 stage.close();
         } catch (Exception e) {
