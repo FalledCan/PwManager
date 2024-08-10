@@ -23,10 +23,21 @@ public class DatabaseManager {
         }
     }
 
+    /**
+     * Database: list
+     * - id
+     * - name : service name is not null
+     * - url : service url
+     * - username : service username is not null
+     * - email : E-mail is not null
+     * - password : Password is not null
+     * - memo
+     */
+
     //テーブル作成
     public static void createTable() throws SQLException {
         String sql_1 = "create table if not exists list(id integer primary key,name not NULL,"
-                + "url text,username text not NULL,password text not NULL,memo text);";
+                + "url text,username text,email text,password text not NULL,memo text);";
         String sql_2 = "create table if not exists key(num integer,check_key text not NULL);";
         Statement stmt = conn.createStatement();
 
@@ -73,18 +84,19 @@ public class DatabaseManager {
     }
 
     //データの挿入
-    public static boolean insertData(String name, String url,String userName, String password, String memo) throws SQLException {
+    public static boolean insertData(String name, String url,String userName, String email, String password, String memo) throws SQLException {
         if(name == null||userName == null||password == null){
             return false;
         }
-        String sql = "insert into list(name, url, username, password, memo) values(?,?,?,?,?)";
+        String sql = "insert into list(name, url, username, email, password, memo) values(?,?,?,?,?,?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
 
         pstmt.setString(1,name);
         pstmt.setString(2,url);
         pstmt.setString(3,userName);
-        pstmt.setString(4,password);
-        pstmt.setString(5,memo);
+        pstmt.setString(4,email);
+        pstmt.setString(5,password);
+        pstmt.setString(6,memo);
 
         pstmt.executeUpdate();
         pstmt.close();
@@ -92,7 +104,7 @@ public class DatabaseManager {
     }
 
     //データの更新
-    public static void updataData(int id, String nName, String nUrl,String nUserName, String nPassword, String nMemo) throws SQLException {
+    public static void updataData(int id, String nName, String nUrl,String nUserName, String nemail, String nPassword, String nMemo) throws SQLException {
 
         String sql = "update list set name = ?, url = ?, username = ?, password = ?, memo = ? WHERE id = ?";
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -100,9 +112,10 @@ public class DatabaseManager {
         pstmt.setString(1,nName);
         pstmt.setString(2,nUrl);
         pstmt.setString(3,nUserName);
-        pstmt.setString(4,nPassword);
-        pstmt.setString(5,nMemo);
-        pstmt.setInt(6,id);
+        pstmt.setString(4,nemail);
+        pstmt.setString(5,nPassword);
+        pstmt.setString(6,nMemo);
+        pstmt.setInt(7,id);
 
         pstmt.executeUpdate();
         pstmt.close();
@@ -124,18 +137,19 @@ public class DatabaseManager {
 
     //id指定データの取得
     public static String[] getData(int id) throws SQLException {
-        String sql = "select name, url, username, password, memo from list where id = ?";
+        String sql = "select name, url, username, email, password, memo from list where id = ?";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setInt(1,id);
         ResultSet rs = pstmt.executeQuery();
 
-        String[] DataList = new String[5];
+        String[] DataList = new String[6];
         if(rs.next()){
             DataList[0] = rs.getString("name");
             DataList[1] = rs.getString("url");
             DataList[2] = rs.getString("username");
-            DataList[3] = rs.getString("password");
-            DataList[4] = rs.getString("memo");
+            DataList[3] = rs.getString("email");
+            DataList[4] = rs.getString("password");
+            DataList[5] = rs.getString("memo");
         }
 
         rs.close();
@@ -146,19 +160,20 @@ public class DatabaseManager {
 
     //全てのデータ取得
     public static ArrayList<String[]> getAllData() throws SQLException {
-        String sql = "select id, name, url, username, password, memo from list";
+        String sql = "select id, name, url, username, email, password, memo from list";
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
 
         ArrayList<String[]> list = new ArrayList<>();
         while (rs.next()) {
-            String[] DataList = new String[6];
+            String[] DataList = new String[7];
             DataList[0] = String.valueOf(rs.getInt("id"));
             DataList[1] = rs.getString("name");
             DataList[2] = rs.getString("url");
             DataList[3] = rs.getString("username");
-            DataList[4] = rs.getString("password");
-            DataList[5] = rs.getString("memo");
+            DataList[4] = rs.getString("email");
+            DataList[5] = rs.getString("password");
+            DataList[6] = rs.getString("memo");
             list.add(DataList);
         }
         rs.close();
@@ -168,20 +183,21 @@ public class DatabaseManager {
 
     //データサーチ
     public static ArrayList<String[]> searchData(String name) throws SQLException {
-        String sql = "SELECT id, name, url, password, memo FROM your_table_name WHERE name = ? ORDER BY id";
+        String sql = "SELECT id, name, url, username, email, password, memo from list where name = ? order by id";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, name);
         ResultSet rs = pstmt.executeQuery();
 
         ArrayList<String[]> list = new ArrayList<>();
         while (rs.next()) {
-            String[] DataList = new String[6];
+            String[] DataList = new String[7];
             DataList[0] = String.valueOf(rs.getInt("id"));
             DataList[1] = rs.getString("name");
             DataList[2] = rs.getString("url");
             DataList[3] = rs.getString("username");
-            DataList[4] = rs.getString("password");
-            DataList[5] = rs.getString("memo");
+            DataList[4] = rs.getString("email");
+            DataList[5] = rs.getString("password");
+            DataList[6] = rs.getString("memo");
             list.add(DataList);
         }
         rs.close();

@@ -11,6 +11,19 @@
     -fx-background-color: #ff6347; /* ホバー時の背景色 */
 }
 
+#minimize-button {
+    -fx-background-color: #353446; /* 通常の背景色 */
+    -fx-text-fill: #ffffff; /* 通常の文字色 */
+    -fx-background-radius: 0; /* ボタンの角をフラットに */
+    -fx-border-radius: 0;
+    -fx-border-color: transparent; /* ボーダーを透明に */
+    -fx-border-width: 0;
+}
+
+#minimize-button:hover {
+    -fx-background-color: #21202C; /* ホバー時の背景色 */
+}
+
 #memo {
     -fx-background-color: #9edd87;
     -fx-text-fill: white;

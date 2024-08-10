@@ -8,12 +8,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="listcontents" prefHeight="37.0" prefWidth="720.0" style="-fx-background-color: #DEDEDE;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.falledcan.pwmanager.ListsController">
+<HBox id="listcontents" prefHeight="37.0" prefWidth="710.0" style="-fx-background-color: #DEDEDE;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label id="pwlist" fx:id="service" alignment="CENTER" prefHeight="37.0" prefWidth="277.0" stylesheets="@style.css" text="Google" />
-      <Label id="pwlist" fx:id="username" alignment="CENTER" prefHeight="37.0" prefWidth="190.0" stylesheets="@style.css" text="Beerchan" />
-      <Label id="pwlist" fx:id="password" alignment="CENTER" prefHeight="37.0" prefWidth="190.0" stylesheets="@style.css" text="********" />
-      <Pane prefHeight="37.0" prefWidth="124.0">
+      <Label id="pwlist" fx:id="service" alignment="CENTER" prefHeight="37.0" prefWidth="150.0" stylesheets="@style.css" text="Google" />
+      <Label id="pwlist" fx:id="username" alignment="CENTER" prefHeight="37.0" prefWidth="145.0" stylesheets="@style.css" text="Beerchan" />
+      <Label id="pwlist" fx:id="username1" alignment="CENTER" prefHeight="37.0" prefWidth="170.0" stylesheets="@style.css" text="Beerchan@fuck.com" />
+      <Label id="pwlist" fx:id="password" alignment="CENTER" prefHeight="37.0" prefWidth="145.0" stylesheets="@style.css" text="********" />
+      <Pane prefHeight="37.0" prefWidth="100.0">
          <children>
             <Button id="memo" fx:id="memo" contentDisplay="RIGHT" layoutX="14.0" layoutY="4.0" mnemonicParsing="false" stylesheets="@style.css">
                <font>
