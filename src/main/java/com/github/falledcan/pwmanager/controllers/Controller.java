@@ -1,4 +1,4 @@
-package com.github.falledcan.pwmanager;
+package com.github.falledcan.pwmanager.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +43,7 @@ public class Controller {
                 try {
                         //Listを並べる処理
                         for(int i = 0; i< 400; i++) {
-                                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("lists.fxml"));
+                                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/github/falledcan/pwmanager/lists.fxml"));
                                 HBox hBox = fxmlLoader.load();
                                 Button button_meno = (Button) hBox.lookup("#memo");
                                 int finalI = i;
@@ -85,7 +85,7 @@ public class Controller {
         private void addPwButton(){
 
             try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("password-add.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/github/falledcan/pwmanager/password-add.fxml"));
                     Parent root = fxmlLoader.load();
                     Stage addStage = new Stage();
                     addStage.initStyle(StageStyle.UNDECORATED);

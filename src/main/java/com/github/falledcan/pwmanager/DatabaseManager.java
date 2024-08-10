@@ -84,10 +84,7 @@ public class DatabaseManager {
     }
 
     //データの挿入
-    public static boolean insertData(String name, String url,String userName, String email, String password, String memo) throws SQLException {
-        if(name == null||userName == null||password == null){
-            return false;
-        }
+    public static void insertData(String name, String url,String userName, String email, String password, String memo) throws SQLException {
         String sql = "insert into list(name, url, username, email, password, memo) values(?,?,?,?,?,?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
 
@@ -100,7 +97,7 @@ public class DatabaseManager {
 
         pstmt.executeUpdate();
         pstmt.close();
-        return true;
+
     }
 
     //データの更新

@@ -1,5 +1,6 @@
 package com.github.falledcan.pwmanager;
 
+import com.github.falledcan.pwmanager.controllers.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,7 +18,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         stage.initStyle(StageStyle.UNDECORATED);
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-screen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/github/falledcan/pwmanager/main-screen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("PasswordManager");
         Controller controller = new Controller();

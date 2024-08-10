@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="576.0" prefWidth="829.0" style="-fx-background-color: #F5F1EB;" stylesheets="@tooltip-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.falledcan.pwmanager.Controller">
+<AnchorPane prefHeight="576.0" prefWidth="829.0" style="-fx-background-color: #F5F1EB;" stylesheets="@tooltip-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.falledcan.pwmanager.controllers.Controller">
    <children>
       <Pane layoutY="25.0" prefHeight="551.0" prefWidth="62.0" style="-fx-background-color: #353446;">
          <children>

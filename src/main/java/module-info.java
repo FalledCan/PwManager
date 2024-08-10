@@ -11,5 +11,8 @@ module com.github.falledcan.pwmanager {
 
     opens com.github.falledcan.pwmanager to javafx.fxml;
     exports com.github.falledcan.pwmanager;
+    exports com.github.falledcan.pwmanager.controllers;
+    opens com.github.falledcan.pwmanager.controllers to javafx.fxml;
+
 
 }

@@ -1,4 +1,4 @@
-package com.github.falledcan.pwmanager;
+package com.github.falledcan.pwmanager.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

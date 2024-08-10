@@ -70,8 +70,19 @@
     -fx-effect: null;
     }
 
-
-
 #listcontents {
     -fx-min-height: 37px;
+}
+
+
+.def_button {
+ -fx-background-radius: 0;    /* ボタンの角を四角くする */
+    -fx-border-radius: 0;        /* 枠線の角を四角くする */
+     /* ボタン内のテキストの余白を調整 */
+    -fx-text-fill: white;        /* 文字の色を白にする */
+    -fx-background-color: #353446;
+    }
+
+.def_button:hover {
+    -fx-background-color: #21202C
 }
