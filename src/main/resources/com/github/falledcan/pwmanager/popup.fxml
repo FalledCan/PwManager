@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="327.0" style="-fx-background-color: #F5F1EB;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.falledcan.pwmanager.controllers.PopupController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="327.0" style="-fx-background-color: #F5F1EB;" styleClass="pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.falledcan.pwmanager.controllers.PopupController">
    <children>
-      <HBox prefHeight="30.0" prefWidth="327.0" style="-fx-background-color: #353446;">
+      <HBox fx:id="titleBar" prefHeight="30.0" prefWidth="327.0" style="-fx-background-color: #353446;">
          <children>
             <Label prefHeight="30.0" prefWidth="63.0" text="　Popup" textFill="WHITE">
                <font>
