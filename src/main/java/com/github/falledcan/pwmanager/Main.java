@@ -12,9 +12,6 @@ import java.util.ArrayList;
 
 public class Main extends Application {
 
-    public static int Row_count = 0;
-    public static ArrayList<String[]> DataList = new ArrayList<>();
-
     @Override
     public void start(Stage stage) throws IOException {
         stage.initStyle(StageStyle.UNDECORATED);
@@ -46,9 +43,9 @@ public class Main extends Application {
             System.exit(0);
         }
 
-        Row_count = DatabaseManager.getRowCount();
-        if(Row_count != 0){
-            DataList = DatabaseManager.getAllData();
+        Utils.Row_count = DatabaseManager.getRowCount();
+        if(Utils.Row_count != 0){
+            Utils.DataList = DatabaseManager.getAllData();
         }
     }
 }

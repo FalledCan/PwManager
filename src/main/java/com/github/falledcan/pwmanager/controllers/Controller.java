@@ -1,6 +1,7 @@
 package com.github.falledcan.pwmanager.controllers;
 
 import com.github.falledcan.pwmanager.Main;
+import com.github.falledcan.pwmanager.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -43,7 +44,7 @@ public class Controller {
 
                 try {
                         //Listを並べる処理
-                        for(int i = 0; i< Main.Row_count; i++) {
+                        for(int i = 0; i< Utils.Row_count; i++) {
                                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/github/falledcan/pwmanager/lists.fxml"));
                                 HBox hBox = fxmlLoader.load();
                                 Button button_meno = (Button) hBox.lookup("#memo");

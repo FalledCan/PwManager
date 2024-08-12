@@ -132,6 +132,7 @@ public class DatabaseManager {
         return true;
     }
 
+    //Password取得
     public static String getPassword(int id) throws Exception {
         String sql = "select password from list where id = ?";
         PreparedStatement pstmt = conn.prepareStatement(sql);

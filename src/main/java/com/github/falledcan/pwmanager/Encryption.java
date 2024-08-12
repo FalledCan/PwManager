@@ -9,7 +9,7 @@ import java.util.Base64;
 public class Encryption {
     private static final String ALGORITHM = "AES";
     private static final int KEY_SIZE = 256; // AES-256
-    public static String key;
+    private static String key;
 
     public static void loadKey() throws Exception {
         key = FileManager.jsonData_key();
