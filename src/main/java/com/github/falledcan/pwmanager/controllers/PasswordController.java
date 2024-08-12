@@ -2,6 +2,8 @@ package com.github.falledcan.pwmanager.controllers;
 
 import com.github.falledcan.pwmanager.DatabaseManager;
 import com.github.falledcan.pwmanager.Encryption;
+import com.github.falledcan.pwmanager.Utils.FxmlUtils;
+import com.github.falledcan.pwmanager.Utils.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,8 +18,6 @@ import javafx.stage.StageStyle;
 
 
 public class PasswordController {
-
-    public static boolean edit = false;
 
     @FXML
     private Button cancelButton;
@@ -56,8 +56,23 @@ public class PasswordController {
     private HBox titleBar;
 
     @FXML
+    private Button deleteButton;
+
+    @FXML
     public void initialize() {
         makeStageDraggable();
+        setDefaultText();
+        deleteButton.setVisible(Utils.edit);
+    }
+
+    private void setDefaultText(){
+        if(Utils.edit) {
+            service.setText(Utils.service);
+            url.setText(Utils.url);
+            username.setText(Utils.username);
+            email.setText(Utils.email);
+            password.setText(Utils.password);
+        }
     }
 
     //カーソルで移動
@@ -71,6 +86,11 @@ public class PasswordController {
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
         });
+    }
+
+    @FXML
+    private void deleteButton(){
+
     }
 
     @FXML
@@ -106,25 +126,18 @@ public class PasswordController {
 
         if(count == 0){
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/github/falledcan/pwmanager/popup.fxml"));
-                Parent root = fxmlLoader.load();
-                Stage addStage = new Stage();
-                addStage.initStyle(StageStyle.UNDECORATED);
-                addStage.setTitle("PoP");
-                addStage.initModality(Modality.APPLICATION_MODAL);
-                addStage.setScene(new Scene(root));
-
                 //true:編集false:追加
-                if(edit){
+                if(Utils.edit){
 
+                    FxmlUtils.showPopUp("データを更新しました。",false);
                 }else {
                     String password_ = Encryption.encrypt(password.getText());
                     String username_ = Encryption.encrypt(username.getText());
                     String email_ = Encryption.encrypt(email.getText());
                     DatabaseManager.insertData(service.getText(),url.getText(),username_,email_,password_,null);
+                    FxmlUtils.showPopUp("登録が完了しました。",false);
                 }
-                edit = false;
-                addStage.showAndWait();
+                Utils.edit = false;
                 Stage stage = (Stage) cancelButton.getScene().getWindow();
                 stage.close();
         } catch (Exception e) {

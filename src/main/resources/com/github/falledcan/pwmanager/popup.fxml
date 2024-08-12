@@ -18,6 +18,7 @@
          </children>
       </HBox>
       <Label fx:id="poptext" alignment="CENTER" layoutX="37.0" layoutY="46.0" prefHeight="120.0" prefWidth="253.0" text="Label" />
-      <Button fx:id="popbutton" layoutX="141.0" layoutY="166.0" mnemonicParsing="false" onAction="#closeButton" styleClass="def_button" stylesheets="@style.css" text="閉じる" />
+      <Button fx:id="okButton" layoutX="250.0" layoutY="166.0" mnemonicParsing="false" onAction="#onOkButton" prefWidth="63.0" styleClass="def_button" stylesheets="@style.css" text="OK" />
+      <Button fx:id="cancelButton" layoutX="179.0" layoutY="166.0" mnemonicParsing="false" onAction="#onCancelButton" prefHeight="25.0" prefWidth="63.0" styleClass="def_button" stylesheets="@style.css" text="キャンセル" />
    </children>
 </AnchorPane>

@@ -1,18 +1,14 @@
 package com.github.falledcan.pwmanager.controllers;
 
-import com.github.falledcan.pwmanager.Main;
-import com.github.falledcan.pwmanager.Utils;
+import com.github.falledcan.pwmanager.Utils.FxmlUtils;
+import com.github.falledcan.pwmanager.Utils.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -47,12 +43,6 @@ public class Controller {
                         for(int i = 0; i< Utils.Row_count; i++) {
                                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/github/falledcan/pwmanager/lists.fxml"));
                                 HBox hBox = fxmlLoader.load();
-                                Button button_meno = (Button) hBox.lookup("#memo");
-                                int finalI = i;
-                                //ボタンにonActionを追加する
-                                button_meno.setOnAction(actionEvent -> {
-                                        onClickButton(finalI);
-                                });
                                 listBox.getChildren().add(hBox);
                         }
                 }catch (Exception e){
@@ -85,18 +75,8 @@ public class Controller {
         //password追加ボタンを押した時の処理
         @FXML
         private void addPwButton(){
-
             try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/github/falledcan/pwmanager/password-add.fxml"));
-                    Parent root = fxmlLoader.load();
-                    Stage addStage = new Stage();
-                    addStage.initStyle(StageStyle.UNDECORATED);
-                    addStage.setTitle("PasswordEditor");
-                    addStage.initModality(Modality.APPLICATION_MODAL);
-                    addStage.setScene(new Scene(root));
-                    addStage.showAndWait();
-
-
+                FxmlUtils.showPasswordEditor(false);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -1,9 +1,8 @@
 package com.github.falledcan.pwmanager.controllers;
 
-import com.github.falledcan.pwmanager.DatabaseManager;
-import com.github.falledcan.pwmanager.Encryption;
-import com.github.falledcan.pwmanager.Main;
-import com.github.falledcan.pwmanager.Utils;
+import com.github.falledcan.pwmanager.*;
+import com.github.falledcan.pwmanager.Utils.FxmlUtils;
+import com.github.falledcan.pwmanager.Utils.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,6 +10,8 @@ import javafx.scene.control.Label;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class ListsController {
 
@@ -90,11 +91,19 @@ public class ListsController {
         clipboard.setContents(selection, selection);
     }
 
+    //Memoボタン処理
     private void onMemo(int id){
-        //めも操作
+
+        System.out.println("ts1");
     }
 
+    //Editボタン処理
     private void onEdit(int id){
-        //Password編集
+        try {
+            FxmlUtils.setDefaultTextPE(DatabaseManager.getData(id));
+            FxmlUtils.showPasswordEditor(true);
+        } catch (IOException | SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

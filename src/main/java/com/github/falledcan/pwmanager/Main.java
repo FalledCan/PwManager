@@ -1,5 +1,6 @@
 package com.github.falledcan.pwmanager;
 
+import com.github.falledcan.pwmanager.Utils.Utils;
 import com.github.falledcan.pwmanager.controllers.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +9,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Main extends Application {
 

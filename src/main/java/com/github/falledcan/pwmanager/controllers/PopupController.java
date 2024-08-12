@@ -1,5 +1,6 @@
 package com.github.falledcan.pwmanager.controllers;
 
+import com.github.falledcan.pwmanager.Utils.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +13,10 @@ public class PopupController {
     private Label poptext;
 
     @FXML
-    private Button popbutton;
+    private Button okButton;
+
+    @FXML
+    private Button cancelButton;
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -22,15 +26,26 @@ public class PopupController {
 
     @FXML
     public void initialize() {
-        poptext.setText("登録しました。");
+        poptext.setText(Utils.popText);
         makeStageDraggable();
+        cancelButton.setVisible(Utils.cancelButton);
     }
 
+    //Cancelを押した時の処理
     @FXML
-    private void closeButton() {
-        Stage stage = (Stage) popbutton.getScene().getWindow();
+    private void onCancelButton(){
+
+    }
+
+
+    //Okを押した時の処理
+    @FXML
+    private void onOkButton() {
+        Stage stage = (Stage) okButton.getScene().getWindow();
         stage.close();
     }
+
+
     //カーソルで移動
     private void makeStageDraggable() {
         titleBar.setOnMousePressed(event -> {
