@@ -132,6 +132,17 @@ public class DatabaseManager {
         return true;
     }
 
+    public static String getPassword(int id) throws Exception {
+        String sql = "select password from list where id = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setInt(1,id);
+        ResultSet rs = pstmt.executeQuery();
+        String pw = rs.getString("password");
+        rs.close();
+        pstmt.close();
+        return Encryption.decrypt(pw);
+    }
+
     //id指定データの取得
     public static String[] getData(int id) throws SQLException {
         String sql = "select name, url, username, email, password, memo from list where id = ?";
@@ -157,20 +168,17 @@ public class DatabaseManager {
 
     //全てのデータ取得
     public static ArrayList<String[]> getAllData() throws SQLException {
-        String sql = "select id, name, url, username, email, password, memo from list";
+        String sql = "select id, name, username, email from list";
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
 
         ArrayList<String[]> list = new ArrayList<>();
         while (rs.next()) {
-            String[] DataList = new String[7];
+            String[] DataList = new String[4];
             DataList[0] = String.valueOf(rs.getInt("id"));
             DataList[1] = rs.getString("name");
-            DataList[2] = rs.getString("url");
-            DataList[3] = rs.getString("username");
-            DataList[4] = rs.getString("email");
-            DataList[5] = rs.getString("password");
-            DataList[6] = rs.getString("memo");
+            DataList[2] = rs.getString("username");
+            DataList[3] = rs.getString("email");
             list.add(DataList);
         }
         rs.close();

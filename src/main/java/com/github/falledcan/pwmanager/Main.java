@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 public class Main extends Application {
 
-    static int Row_count = 0;
-    static ArrayList<String[]> DataList = new ArrayList<>();
+    public static int Row_count = 0;
+    public static ArrayList<String[]> DataList = new ArrayList<>();
 
     @Override
     public void start(Stage stage) throws IOException {
