@@ -5,5 +5,5 @@ This project is a program I've developed solely for my own use. It's an applicat
 
 I plan to release this application publicly, but I cannot take responsibility for any issues that may arise from its use. Please use it at your own risk.
 
-##最新バージョン
+## 最新バージョン
 v1.0.0
