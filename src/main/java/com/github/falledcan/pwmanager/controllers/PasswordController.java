@@ -16,6 +16,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
+
 
 public class PasswordController {
 
@@ -89,18 +91,25 @@ public class PasswordController {
     }
 
     @FXML
-    private void deleteButton(){
-
+    private void onDeleteButton(){
+        //削除処理
+        try {
+            FxmlUtils.showPopUp("本当に削除しますか？",true);
+            Stage stage = (Stage) deleteButton.getScene().getWindow();
+            stage.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
-    private void cancelButton(){
+    private void onCancelButton(){
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    private void okButton(){
+    private void onOkButton(){
         //空白の場合の処理
         int count = 0;
         if(service.getText().isEmpty()){
@@ -127,13 +136,15 @@ public class PasswordController {
         if(count == 0){
             try {
                 //true:編集false:追加
+                String password_ = Encryption.encrypt(password.getText());
+                String username_ = Encryption.encrypt(username.getText());
+                String email_ = Encryption.encrypt(email.getText());
                 if(Utils.edit){
-
+                    //編集
+                    DatabaseManager.updataData(Utils.id,service.getText(),url.getText(),username_,email_,password_);
                     FxmlUtils.showPopUp("データを更新しました。",false);
                 }else {
-                    String password_ = Encryption.encrypt(password.getText());
-                    String username_ = Encryption.encrypt(username.getText());
-                    String email_ = Encryption.encrypt(email.getText());
+                    //追加
                     DatabaseManager.insertData(service.getText(),url.getText(),username_,email_,password_,null);
                     FxmlUtils.showPopUp("登録が完了しました。",false);
                 }

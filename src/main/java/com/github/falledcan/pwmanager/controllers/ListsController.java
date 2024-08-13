@@ -100,6 +100,7 @@ public class ListsController {
     //Editボタン処理
     private void onEdit(int id){
         try {
+            Utils.id = id;
             FxmlUtils.setDefaultTextPE(DatabaseManager.getData(id));
             FxmlUtils.showPasswordEditor(true);
         } catch (IOException | SQLException e) {

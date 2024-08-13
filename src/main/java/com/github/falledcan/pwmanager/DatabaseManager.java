@@ -101,18 +101,29 @@ public class DatabaseManager {
     }
 
     //データの更新
-    public static void updataData(int id, String nName, String nUrl,String nUserName, String nemail, String nPassword, String nMemo) throws SQLException {
+    public static void updataData(int id, String nName, String nUrl,String nUserName, String nEmail, String nPassword) throws SQLException {
 
-        String sql = "update list set name = ?, url = ?, username = ?, password = ?, memo = ? WHERE id = ?";
+        String sql = "update list set name = ?, url = ?, username = ?,email = ? ,password = ? WHERE id = ?";
         PreparedStatement pstmt = conn.prepareStatement(sql);
 
         pstmt.setString(1,nName);
         pstmt.setString(2,nUrl);
         pstmt.setString(3,nUserName);
-        pstmt.setString(4,nemail);
+        pstmt.setString(4,nEmail);
         pstmt.setString(5,nPassword);
-        pstmt.setString(6,nMemo);
-        pstmt.setInt(7,id);
+        pstmt.setInt(6,id);
+
+        pstmt.executeUpdate();
+        pstmt.close();
+    }
+
+    public static void updataMemo(int id, String nMemo) throws SQLException {
+
+        String sql = "update list set memo = ? WHERE id = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+
+        pstmt.setString(1,nMemo);
+        pstmt.setInt(2,id);
 
         pstmt.executeUpdate();
         pstmt.close();

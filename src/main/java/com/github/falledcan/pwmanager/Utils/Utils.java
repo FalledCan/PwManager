@@ -12,7 +12,8 @@ public class Utils {
 
     public static int listCount = 0;
 
-    //passwordEditor追加
+    //passwordEditor
+    public static int id;
     public static boolean edit;
 
     //passwordEditor Defaultテキスト
