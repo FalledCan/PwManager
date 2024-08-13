@@ -43,9 +43,5 @@ public class Main extends Application {
             System.exit(0);
         }
 
-        Utils.Row_count = DatabaseManager.getRowCount();
-        if(Utils.Row_count != 0){
-            Utils.DataList = DatabaseManager.getAllData();
-        }
     }
 }

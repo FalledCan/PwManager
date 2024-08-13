@@ -50,6 +50,7 @@ public class PopupController {
             try {
                 DatabaseManager.deleteDate(Utils.id);
                 FxmlUtils.showPopUp("データを削除しました。",false);
+                FxmlUtils.setList();
             } catch (SQLException | IOException e) {
                 throw new RuntimeException(e);
             }

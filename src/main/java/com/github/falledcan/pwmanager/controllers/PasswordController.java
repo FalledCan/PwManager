@@ -148,6 +148,7 @@ public class PasswordController {
                     DatabaseManager.insertData(service.getText(),url.getText(),username_,email_,password_,null);
                     FxmlUtils.showPopUp("登録が完了しました。",false);
                 }
+                FxmlUtils.setList();
                 Utils.edit = false;
                 Stage stage = (Stage) cancelButton.getScene().getWindow();
                 stage.close();

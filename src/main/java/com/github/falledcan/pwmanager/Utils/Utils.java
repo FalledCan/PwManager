@@ -1,5 +1,8 @@
 package com.github.falledcan.pwmanager.Utils;
 
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
 import java.util.ArrayList;
 
 public class Utils {
@@ -28,5 +31,7 @@ public class Utils {
 
     //ポップアップcancelボタンデフォルト:false
     public static boolean cancelButton= false;
+
+    public static VBox listBox;
 
 }

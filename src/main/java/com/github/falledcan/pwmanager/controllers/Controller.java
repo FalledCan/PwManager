@@ -1,5 +1,6 @@
 package com.github.falledcan.pwmanager.controllers;
 
+import com.github.falledcan.pwmanager.DatabaseManager;
 import com.github.falledcan.pwmanager.Utils.FxmlUtils;
 import com.github.falledcan.pwmanager.Utils.Utils;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class Controller {
 
@@ -36,19 +38,8 @@ public class Controller {
         @FXML
         public void initialize() {
 
-
-
-                try {
-                        //Listを並べる処理
-                        for(int i = 0; i< Utils.Row_count; i++) {
-                                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/github/falledcan/pwmanager/lists.fxml"));
-                                HBox hBox = fxmlLoader.load();
-                                listBox.getChildren().add(hBox);
-                        }
-                }catch (Exception e){
-                        e.printStackTrace();
-                }
-
+                Utils.listBox = listBox;
+                FxmlUtils.setList();
                 makeStageDraggable();
                 Tooltip tooltip = new Tooltip("add Password");
                 Tooltip.install(addPw, tooltip);
@@ -87,6 +78,11 @@ public class Controller {
         private void handleClose(){
                 if (stage != null) {
                         stage.close();
+                    try {
+                        DatabaseManager.close();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
         }
 
