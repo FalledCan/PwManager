@@ -4,8 +4,14 @@ import com.github.falledcan.pwmanager.*;
 import com.github.falledcan.pwmanager.Utils.FxmlUtils;
 import com.github.falledcan.pwmanager.Utils.Utils;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -93,8 +99,19 @@ public class ListsController {
 
     //Memoボタン処理
     private void onMemo(int id){
-
-        System.out.println("ts1");
+        try {
+            Utils.id = id;
+            FXMLLoader fxmlLoader = new FXMLLoader(FxmlUtils.class.getResource("/com/github/falledcan/pwmanager/memo.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Memo");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
     //Editボタン処理

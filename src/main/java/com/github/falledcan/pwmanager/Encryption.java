@@ -17,6 +17,8 @@ public class Encryption {
 
     //指定されたデータをAESで暗号化
     public static String encrypt(String data) throws Exception {
+        if(data == null)
+            return null;
         byte[] decodedKey = Base64.getDecoder().decode(key);
         SecretKeySpec secretKey = new SecretKeySpec(decodedKey, ALGORITHM);
         Cipher cipher = Cipher.getInstance(ALGORITHM);
@@ -27,6 +29,8 @@ public class Encryption {
 
     // 指定された暗号化データをAESで復号化
     public static String decrypt(String encryptedData) throws Exception {
+        if(encryptedData == null)
+            return null;
         byte[] decodedKey = Base64.getDecoder().decode(key);
         SecretKeySpec secretKey = new SecretKeySpec(decodedKey, ALGORITHM);
         Cipher cipher = Cipher.getInstance(ALGORITHM);
