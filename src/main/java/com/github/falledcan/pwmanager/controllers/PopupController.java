@@ -9,7 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 
 public class PopupController {
@@ -46,17 +49,26 @@ public class PopupController {
     //Okを押した時の処理
     @FXML
     private void onOkButton() {
-        if(Utils.cancelButton){
+        if (Utils.cancelButton && !Utils.checkVersion) {
             try {
                 DatabaseManager.deleteDate(Utils.id);
-                FxmlUtils.showPopUp("データを削除しました。",false);
+                FxmlUtils.showPopUp("データを削除しました。", false);
                 FxmlUtils.setList();
             } catch (SQLException | IOException e) {
                 throw new RuntimeException(e);
             }
+        } else if (Utils.checkVersion) {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/FalledCan/PwManager/releases/latest"));
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
+            Stage stage = (Stage) okButton.getScene().getWindow();
+            stage.close();
         }
-        Stage stage = (Stage) okButton.getScene().getWindow();
-        stage.close();
+
     }
 
 

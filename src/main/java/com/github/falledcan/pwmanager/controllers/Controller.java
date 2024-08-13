@@ -1,6 +1,7 @@
 package com.github.falledcan.pwmanager.controllers;
 
 import com.github.falledcan.pwmanager.DatabaseManager;
+import com.github.falledcan.pwmanager.GitHubReleaseChecker;
 import com.github.falledcan.pwmanager.Utils.FxmlUtils;
 import com.github.falledcan.pwmanager.Utils.Utils;
 import javafx.fxml.FXML;
@@ -43,11 +44,7 @@ public class Controller {
                 makeStageDraggable();
                 Tooltip tooltip = new Tooltip("add Password");
                 Tooltip.install(addPw, tooltip);
-        }
-
-        private void onClickButton(int i) {
-
-                System.out.println(i);
+                GitHubReleaseChecker.checkVersion();
         }
 
         //カーソルで移動

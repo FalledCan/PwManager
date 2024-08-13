@@ -32,6 +32,10 @@ public class Utils {
     //ポップアップcancelボタンデフォルト:false
     public static boolean cancelButton= false;
 
+    //list
     public static VBox listBox;
+
+    //checkVersion
+    public static boolean checkVersion = false;
 
 }

@@ -6,6 +6,7 @@ module com.github.falledcan.pwmanager {
     requires org.kordamp.bootstrapfx.core;
     requires java.desktop;
     requires java.sql;
+    requires org.jsoup;
 
     requires com.fasterxml.jackson.databind;
 
