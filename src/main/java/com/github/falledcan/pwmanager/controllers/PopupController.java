@@ -42,6 +42,7 @@ public class PopupController {
     //Cancelを押した時の処理
     @FXML
     private void onCancelButton(){
+        Utils.checkVersion = false;
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
@@ -61,13 +62,15 @@ public class PopupController {
             if (Desktop.isDesktopSupported()) {
                 try {
                     Desktop.getDesktop().browse(new URI("https://github.com/FalledCan/PwManager/releases/latest"));
+                    Utils.checkVersion = false;
                 } catch (IOException | URISyntaxException e) {
                     e.printStackTrace();
                 }
             }
-            Stage stage = (Stage) okButton.getScene().getWindow();
-            stage.close();
+
         }
+        Stage stage = (Stage) okButton.getScene().getWindow();
+        stage.close();
 
     }
 

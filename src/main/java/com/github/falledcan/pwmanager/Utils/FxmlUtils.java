@@ -60,8 +60,8 @@ public class FxmlUtils {
     public static void setList(){
         try {
             Utils.Row_count = DatabaseManager.getRowCount();
+            Utils.listBox.getChildren().clear();
             if(Utils.Row_count != 0){
-                Utils.listBox.getChildren().clear();
                 Utils.DataList = DatabaseManager.getAllData();
                 Utils.listCount = 0;
                 for(int i = 0;i<Utils.Row_count;i++) {
