@@ -11,7 +11,7 @@ public class GitHubReleaseChecker {
 
     public static void checkVersion(){
         String latestVersion =  getLatestReleaseVersion();
-        String currentVersion = "v1.0.01"; // ローカルのバージョンをここに指定します
+        String currentVersion = "v1.0.0"; // ローカルのバージョンをここに指定します
 
         try {
             if (latestVersion != null && !latestVersion.equals(currentVersion)) {
